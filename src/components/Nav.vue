@@ -5,3 +5,8 @@
     <router-link to="/statistics">Statistics</router-link>
   </div>
 </template>
+<style scoped>
+#id {
+  border: 1px solid red;
+}
+</style>
