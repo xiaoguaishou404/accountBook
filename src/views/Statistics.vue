@@ -1,14 +1,12 @@
 <template>
-  <div class="home">
-    Statistics
-    <Nav></Nav>
-  </div>
+      <Layout><p>Statistics</p></Layout>
+
 </template>
 
 <script>
 
 export default {
-  name: "Home",
+  name: "Statistics",
   components: {
   },
 };

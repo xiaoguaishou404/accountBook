@@ -1,11 +1,10 @@
 <template>
-    <Layout><p>Money</p></Layout>
+  <Layout><p>Labels</p></Layout>
 </template>
 
 <script>
 export default {
-  name: "Money",
+  name: "Labels",
   components: {},
 };
 </script>
-

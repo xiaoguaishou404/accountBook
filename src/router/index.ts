@@ -21,14 +21,16 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "statistics" */ '../views/Statistics.vue')
   },
   {
-    path: '/home',
-    name: 'Home',
+    path: '/labels',
+    name: 'Labels',
+    component: () => import(/* webpackChunkName: "labels" */ '../views/Labels.vue')
+
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => {
-      
+
       import(/* webpackChunkName: "notFound" */ '../views/NotFound.vue')
     }
   },
