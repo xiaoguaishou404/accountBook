@@ -1,5 +1,5 @@
 <template>
-      <Layout><p>Statistics</p></Layout>
+      <Layout><p>统计</p></Layout>
 
 </template>
 

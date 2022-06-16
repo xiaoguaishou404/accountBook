@@ -1,5 +1,5 @@
 <template>
-  <Layout><p>Labels</p></Layout>
+  <Layout><p>标签</p></Layout>
 </template>
 
 <script>

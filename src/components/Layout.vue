@@ -1,26 +1,31 @@
 <template>
-  <div class="Layout">
-    <slot></slot>
-    <Nav></Nav>
+  <div class="layout-wrapper">
+    <div class="content" :class="classPrefix && `${classPrefix}-content`">
+      <slot></slot>
+    </div>
+    <Nav :class="classPrefix && `${classPrefix}-Nav`"></Nav>
   </div>
 </template>
 
 <script>
+// classPrefix设计实现外部控制内部css的办法，需一次自定义头部。
 export default {
   name: "Layout",
+  props: ["classPrefix"],
   components: {},
 };
 </script>
 
+
 <style lang="scss" scoped>
-.nav-wrapper {
-  border: 1px solid green;
+.layout-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
+  flex-grow: 1;
 }
 .content {
-  overflow: auto;
   flex-grow: 1;
+  overflow: auto;
 }
 </style>
