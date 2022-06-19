@@ -24,12 +24,8 @@ export default {
   name: "App",
   components: {},
   mounted() {
-    if (document.compatMode == "CSS1Compat") {
-      document.querySelector("#app").style.height =
-        document.documentElement.clientHeight + "px";
-    } else {
-      document.body.style.height = window.body.clientHeight + "px";
-    }
+    document.querySelector("#app").style.height =
+      document.documentElement.clientHeight + "px";
   },
 };
 </script>

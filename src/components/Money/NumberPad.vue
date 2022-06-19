@@ -1,8 +1,9 @@
 <template>
   <div class="numberPad">
-    <div class="output">100</div>
+    <div class="output">{{ output }}</div>
     <div class="buttons">
-      <div class="left"><button>1</button>
+      <div class="left" @click="iuputContent">
+        <button>1</button>
         <button>2</button>
         <button>3</button>
         <button>+</button>
@@ -21,18 +22,61 @@
       </div>
 
       <div class="right">
-        <button>清空</button>
-        <button>删除</button>
-        <button class="ok">OK</button>
+        <button @click="remove">删除</button>
+
+        <button @click="clear">清空</button>
+        <button @click="ok" class="ok">OK</button>
       </div>
     </div>
   </div>
 </template>
 
+
+
 <script lang="ts">
-export default {
-  name: "NumberPad",
-};
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
+@Component
+export default class NumberPad extends Vue {
+  output = "0";
+
+  iuputContent(e: MouseEvent) {
+    const button = e.target as HTMLButtonElement;
+    const input = button.textContent as string;
+    if ("+-×÷".indexOf(input) >= 0) {
+      return;
+    }
+    if (this.output.length === 12) {
+      return;
+    }
+    if (this.output === "0") {
+      if ("0123456789".indexOf(input) >= 0) {
+        this.output = input;
+      } else {
+        this.output += input;
+      }
+      return;
+    }
+    if (this.output.indexOf(".") >= 0 && input === ".") {
+      return;
+    }
+    this.output += input;
+  }
+  remove() {
+    if (this.output.length === 1) {
+      this.output = "0";
+    } else {
+      this.output = this.output.slice(0, -1);
+    }
+  }
+
+  clear() {
+    this.output = "0";
+  }
+  ok() {
+    this.$emit("update:amount", this.output);
+  }
+}
 </script>
 
 <style lang="scss" scoped>
