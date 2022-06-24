@@ -2,11 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  // 去除a标签点击时背景的默认淡蓝色
+  user-select: none;
+  
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  
 }
 
 ul,
@@ -23,4 +28,8 @@ input {
 :focus {
   // outline:rgba(0,0,0,0.3) solid thin;
   outline: none;
+
+}
+h3{
+  font-weight: normal;
 }

@@ -1,12 +1,13 @@
 <template>
   <Layout class-prefix="Money">
     <Tag
-      :data-source.sync="tags"
+      :data-source="tags"
+      @update:dataSource="addTagList"
       @update:selected="changeTags(arguments[0])"
     ></Tag>
-    <Notes @update:value="onUpdateNotes"></Notes>
-    <Types :type.sync ="record.type"></Types>
-    <NumberPad  @update:value="onUpdateAmount"></NumberPad>
+    <Notes fieldName="备注" placeholder="请输入备注" @update:value="onUpdateNotes"></Notes>
+    <Tabs :tabData="tabData" :tabNow.sync="record.tab"></Tabs>
+    <NumberPad @submit="saveRecord" @update:amount="onUpdateAmount"></NumberPad>
   </Layout>
 </template>
 
@@ -17,53 +18,22 @@ import Vue from "vue";
 import Tag from "@/components/Money/Tag.vue";
 import Notes from "@/components/Money/Notes.vue";
 import NumberPad from "@/components/Money/NumberPad.vue";
-import Types from "@/components/Money/Types.vue";
-import { Component, Prop } from "vue-property-decorator";
+import Tabs from "@/components/Money/Tabs.vue";
+import { Component, Prop, Watch } from "vue-property-decorator";
+import localStorage from "@/assets/models/model";
 
-type Record = {
-  tags: string[];
-  notes: string;
-  type: string;
-  amount?: number; //?表示amount不是必要存在的，下面的默认值就可以不写
-};
-
-@Component({ components: { Tag, Notes, NumberPad, Types } })
+@Component({ components: { Tag, Notes, NumberPad, Tabs } })
 export default class Money extends Vue {
-  tags = [
-    "抽烟🚬",
-    "喝酒🍺",
-    "烫头👴",
-    "娱乐🙈",
-    "工作👨‍💻",
-    "出租🚕",
-    "高铁🚄",
-    "飞机✈️",
-    "干饭🥘",
-    "买衣服👔",
-    "送礼🧧",
-    "化妆品💋",
-    "足球⚽",
-    "打麻将🀄",
-    "超市🛒",
-    "零食🍔",
-    "话费📱",
-    "甜食🍭",
-    "西瓜🍉",
-    "橙子🍊",
-    "买菜🥬",
-    "旅游🏞️",
-    "生病🏥",
-    "房租💒",
-    "水费🚿",
-    "洗浴品🧴",
-    "纸巾🧻",
-  ];
-  record: Record = {
+  tags = localStorage.tagList;
+  tabData=['支出','收入']
+
+  record: RecordItem = {
     tags: [],
     notes: "",
-    type: "-",
+    tab: "支出",
     amount: 0,
   };
+  recordList: RecordItem[] = localStorage.recordList;
 
   changeTags(tags: string[]) {
     this.record.tags = tags;
@@ -72,9 +42,23 @@ export default class Money extends Vue {
   onUpdateNotes(notes: string) {
     this.record.notes = notes;
   }
-  
+
   onUpdateAmount(amount: string) {
     this.record.amount = parseFloat(amount);
+    console.log(amount);
+    
+  }
+  saveRecord() {
+    const newRecord: RecordItem = JSON.parse(JSON.stringify(this.record));
+    newRecord.createdAt = new Date().toISOString();
+    this.recordList.push(newRecord);
+  }
+  addTagList(newTag:string){
+    this.tags = localStorage.tagListPush(newTag)
+  }
+  @Watch("recordList")
+  onRecordListChange() {
+    localStorage.recordList = this.recordList;
   }
 }
 </script>

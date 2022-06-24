@@ -1,12 +1,12 @@
 <template>
   <div class="notes">
     <label>
-      <span class="name">备注</span>
+      <span class="name">{{ fieldName }}</span>
       <input
-        @input="value = $event.target.value"
+        @input="onValueChanged"
         :value="value"
-        type="text"
-        placeholder="请输入"
+        tab="text"
+        :placeholder="placeholder"
         autocomplete="off"
       />
     </label>
@@ -18,9 +18,13 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class Notes extends Vue {
-  value = "";
-  @Watch("value")
-  onValueChanged(value: string, oldValue: string) {
+  @Prop({ required: true }) readonly fieldName!: string;
+  @Prop() placeholder?: string;
+  @Prop({ default: "" }) readonly value!: string;
+
+  onValueChanged(event: InputEvent) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value as string;
     this.$emit("update:value", value);
   }
 }

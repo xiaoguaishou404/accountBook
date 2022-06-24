@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive><router-view /></keep-alive>
   </div>
 </template>
 
@@ -16,6 +16,7 @@
   font-size: 16px;
   display: flex;
   flex-direction: column;
+  background: #f5f5f5;
 }
 </style>
 
@@ -26,6 +27,11 @@ export default {
   mounted() {
     document.querySelector("#app").style.height =
       document.documentElement.clientHeight + "px";
+
+    window.addEventListener("resize", () => {
+      document.querySelector("#app").style.height =
+        document.documentElement.clientHeight + "px";
+    });
   },
 };
 </script>

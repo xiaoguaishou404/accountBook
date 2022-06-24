@@ -1,6 +1,6 @@
 <template>
   <div class="layout-wrapper">
-    <div class="content" :class="classPrefix && `${classPrefix}-content`">
+    <div class="content" :class="{ [`${classPrefix}-content`]: classPrefix }">
       <slot></slot>
     </div>
     <Nav :class="classPrefix && `${classPrefix}-Nav`"></Nav>

@@ -27,12 +27,16 @@ const routes: Array<RouteConfig> = [
 
   },
   {
-    path: '/:pathMatch(.*)*',
+    path: '*',
     name: 'NotFound',
-    component: () => {
+    component: () => import(/* webpackChunkName: "notFound" */ '../views/NotFound.vue')
 
-      import(/* webpackChunkName: "notFound" */ '../views/NotFound.vue')
-    }
+  },
+  {
+    path: '/labels/edit/:tagNow',
+    name: 'EditLabels',
+    component: () => import(/* webpackChunkName: "notFound" */ '../views/EditLabels.vue')
+
   },
 
 

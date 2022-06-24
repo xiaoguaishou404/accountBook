@@ -1,8 +1,15 @@
 <template>
-  <div class="types">
+  <div class="tabs" :class="{ [`${classPrefix}-tabs`]: classPrefix }">
     <ul>
-      <li :class="type === '-' && 'selected'" @click="selectType('-')">支出</li>
-      <li :class="type === '+' && 'selected'" @click="selectType('+')">收入</li>
+      <li
+        class="tabs-li"
+        v-for="tab in tabData"
+        :key="tab"
+        :class="tab === tabNow && 'selected'"
+        @click="selectTab(tab)"
+      >
+        {{ tab }}
+      </li>
     </ul>
   </div>
 </template>
@@ -12,23 +19,28 @@
 import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
-export default class Types extends Vue {
-  @Prop() readonly type!: string;
+export default class Tabs extends Vue {
+  @Prop() readonly tabNow!: string;
+  @Prop() readonly tabData!: [];
+  @Prop() readonly classPrefix: string | undefined;
 
-  selectType(type: string) {
-    this.$emit("update:type", type);
+  selectTab(tab: string) {
+    this.$emit("update:tabNow", tab);
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.types {
+.tabs {
   background: rgba($color: #000000, $alpha: 0.3);
   > ul {
     display: flex;
     color: rgba(0, 0, 0, 0.3);
 
-    > li {
+    
+  }
+}
+.tabs-li {
       padding: 1em;
       flex-grow: 1;
       display: flex;
@@ -38,6 +50,4 @@ export default class Types extends Vue {
         box-shadow: 0 0.1em 0 0 rgba(0, 0, 0, 0.6);
       }
     }
-  }
-}
 </style>
