@@ -2,9 +2,13 @@ const { resolve } = require("path")
 
 module.exports = {
   lintOnSave: false,
+<<<<<<< HEAD
   publicPath: process.env.NODE_ENV === 'production'
   ? '/accountBookRun/'
   : '/',
+=======
+
+>>>>>>> e0c2e75a56144180592adebafaae2182d93cfcac
 
   chainWebpack(config) {
 
