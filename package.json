@@ -10,11 +10,25 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3dcfa98806f95c9709cfb6b75487e9eab3d5fe9f
     "register-service-worker": "^1.7.1",
     "dayjs": "^1.11.3",
     "svg-sprite-loader": "^6.0.11",
     "svgo-loader": "^3.0.1",
     "gsap": "^1.20.6",
+<<<<<<< HEAD
+=======
+=======
+    "dayjs": "^1.11.3",
+    "register-service-worker": "^1.7.1",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo-loader": "^3.0.1",
+    "typescript": "^4.7.3",
+>>>>>>> e0c2e75a56144180592adebafaae2182d93cfcac
+>>>>>>> 3dcfa98806f95c9709cfb6b75487e9eab3d5fe9f
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
@@ -37,11 +51,25 @@
     "@vue/test-utils": "^1.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3dcfa98806f95c9709cfb6b75487e9eab3d5fe9f
     "lint-staged": "^9.5.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11",
     "typescript": "~4.1.5"
+<<<<<<< HEAD
+=======
+=======
+    "gsap": "^1.20.6",
+    "lint-staged": "^9.5.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+>>>>>>> e0c2e75a56144180592adebafaae2182d93cfcac
+>>>>>>> 3dcfa98806f95c9709cfb6b75487e9eab3d5fe9f
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -52,4 +80,12 @@
       "git add"
     ]
   }
+<<<<<<< HEAD
 }
+=======
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> e0c2e75a56144180592adebafaae2182d93cfcac
+>>>>>>> 3dcfa98806f95c9709cfb6b75487e9eab3d5fe9f
